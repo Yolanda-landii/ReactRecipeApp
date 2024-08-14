@@ -1,0 +1,160 @@
+Function handleProfilePictureChange:
+    Set profilePicture to selected file
+End Function
+
+Function handleRegister:
+    Prevent default form submission
+    Try:
+        Hash password
+        Create user object with hashed password and profile picture
+        Send user object to API
+        Show alert "User registered successfully"
+    Catch error:
+        Log error
+        Show alert "An error occurred during registration"
+End Function
+
+Render:
+    Form with name, surname, email, username, password fields, and profile picture input
+    Submit button
+    Link to login page
+End Render
+Function handleLogin:
+    Prevent default form submission
+    Try:
+        Fetch all users from API
+        Find user by email
+        If user exists and password matches:
+            Save user to localStorage
+            Navigate to home page
+        Else:
+            Show alert "Invalid credentials"
+    Catch error:
+        Log error
+        Show alert "An error occurred during login"
+End Function
+Check if user is authenticated:
+    If authenticated:
+        Render Navbar, protected content, and Footer
+    Else:
+        Redirect to login page
+End Check
+
+Render:
+    Form with email and password input fields
+    Submit button
+    Link to registration page
+End Render
+Function handleAddNewRecipe:
+    Show recipe form
+End Function
+
+Function handleSaveRecipe:
+    Refresh recipe list
+End Function
+
+Function handleCategoryClick:
+    Set selectedCategory to category
+End Function
+
+Filter recipes based on selectedCategory
+
+Render:
+    Button to add new recipe
+    Buttons for categories
+    RecipeList component
+    RecipeForm component if form is visible
+End Render
+
+Function handleSave:
+    Prevent default form submission
+    Set loading state
+    Create new recipe object with form data
+    Try:
+        If editing an existing recipe:
+            Update recipe by ID
+        Else:
+            Add new recipe
+        Call onSave callback
+    Catch error:
+        Set error state with error message
+    Finally:
+        Reset loading state
+End Function
+
+Render:
+    Form with fields for recipe details
+    Submit button with loading state
+    Display error message if exists
+End Render
+
+Function handleDelete:
+    Delete recipe by ID from API
+    Reload page
+End Function
+
+Render:
+    Display recipe details (name, ingredients, instructions, etc.)
+    Edit button
+    Delete button with handleDelete function
+End Render
+
+Function handleProfilePictureChange:
+    Set profilePicture to selected file
+End Function
+
+Function handleSaveProfile:
+    Prevent default form submission
+    Create form data object with user details and profile picture
+    Try:
+        Update user profile using API
+        Show success alert
+    Catch error:
+        Log error
+        Show error alert
+End Function
+
+Render:
+    Display user profile information and profile picture
+    Form to update profile information
+    Submit button
+End Render
+Function StoreUserInLocalStorage:
+    Process:
+        Save user details and authentication state in local storage
+
+Function GetUserFromLocalStorage:
+    Process:
+        Retrieve user details from local storage
+
+Function SetAuthenticationState:
+    Process:
+        Set the authentication state in local storage
+
+        Function SaveUserToDatabase:
+    Process:
+        Append user data to `db.json`
+
+Function FetchUsersFromDatabase:
+    Process:
+        Retrieve all user data from `db.json`
+
+Function SaveRecipeToDatabase:
+    Process:
+        Append recipe data to `db.json`
+
+Function FetchRecipeFromDatabaseById:
+    Process:
+        Retrieve the specific recipe by ID from `db.json`
+
+Function UpdateUserInDatabase:
+    Process:
+        Modify the existing user data in `db.json`
+
+Function UpdateRecipeInDatabase:
+    Process:
+        Modify the existing recipe data in `db.json`
+
+Function RemoveRecipeFromDatabase:
+    Process:
+        Delete the recipe data from `db.json` by ID
