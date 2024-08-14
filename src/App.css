@@ -1,0 +1,50 @@
+/* src/styles/App.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background-color: #333;
+  padding: 10px;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+/* src/styles/Responsive.css */
+@media (max-width: 480px) {
+  /* Styles for small devices */
+}
+
+@media (max-width: 768px) {
+  /* Styles for tablets */
+}
+
+@media (max-width: 1024px) {
+  /* Styles for small laptops */
+}
+
+@media (max-width: 1200px) {
+  /* Styles for desktops */
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
