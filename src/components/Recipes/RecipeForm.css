@@ -1,137 +1,147 @@
+/* RecipeForm.css */
 .recipe-form-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
-    background-color: #FAFAFA;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .recipe-form-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: Arial, sans-serif;
-    color: #333;
-  }
-  
-  .recipe-form-container input,
-  .recipe-form-container textarea,
-  .recipe-form-container select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #CCCCCC;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  .recipe-form-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #e55c50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .recipe-form-container button:disabled {
-    background-color: #A0AEC0;
-  }
-  
-  .recipe-form-container .error {
-    color: red;
-    font-size: 14px;
-    text-align: center;
-  }
-  .recipe-card {
-    background-color: #f7f7f7; 
-    border: 1px solid #ccc; 
-    border-radius: 5px;
-    padding: 20px; 
-    margin: 10px; 
-    width: 300px; 
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .recipe-title {
-    font-size: 1.5em;
-    margin-bottom: 15px; 
-  }
-  
-  .recipe-ingredients {
-    list-style-type: none; 
-    padding-left: 0; 
-    margin-bottom: 15px; 
-  }
-  
-  .recipe-ingredients li {
-    margin-bottom: 5px; 
-  }
-  
-  .edit-button, .delete-button {
-    display: inline-block;
-    padding: 10px 15px; 
-    margin-right: 10px; 
-    border: none; 
-    border-radius: 3px; 
-    cursor: pointer; 
-  }
-  
-  .edit-button {
-    background-color: #007bff; 
-    color: white;
-  }
-  
-  .delete-button {
-    background-color: #dc3545; 
-    color: white; 
-  }
-  
-  .edit-button:hover, .delete-button:hover {
-    opacity: 0.9; 
-  }
-  .recipe-list {
-    margin-top: 20px;
-    /* Adjust the top margin if needed */
-  }
-  
-  .search-filters {
-    display: flex;
-    justify-content: flex-end; /* Aligns the search bar to the right */
-    margin-bottom: 20px;
-  }
-  
-  .search-filters input,
-  .search-filters select,
-  .search-filters button {
-    margin-left: 10px;
-  }
-  
-  .search-filters input {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .search-filters select {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  .search-filters button {
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .search-filters button:hover {
-    background-color: #0056b3;
-  }
-  
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  background-color: #FAFAFA;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.recipe-form-container input,
+.recipe-form-container textarea,
+.recipe-form-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.recipe-form-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #e55c50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.recipe-form-container button:disabled {
+  background-color: #A0AEC0;
+}
+
+.recipe-form-container .error {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* RecipeCard.css */
+.recipe-card {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-title {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.recipe-ingredients {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.recipe-ingredients li {
+  margin-bottom: 5px;
+}
+
+.recipe-details p {
+  margin: 5px 0;
+}
+
+.edit-button,
+.delete-button {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  opacity: 0.9;
+}
+
+/* RecipeList.css */
+.recipe-list {
+  margin-top: 20px;
+  /* Adjust the top margin if needed */
+}
+
+.search-filters {
+  display: flex;
+  justify-content: flex-end; /* Aligns the search bar to the right */
+  margin-bottom: 20px;
+}
+
+.search-filters input,
+.search-filters select,
+.search-filters button {
+  margin-left: 10px;
+}
+
+.search-filters input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-filters select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-filters button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.search-filters button:hover {
+  background-color: #0056b3;
+}

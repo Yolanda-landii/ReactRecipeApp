@@ -1,3 +1,4 @@
+
 {
   "users": [
     {
@@ -8,7 +9,7 @@
       "username": "Yolanda",
       "password": "$2a$10$Fv0YEj4XWasM/RzLc7aLH.mdSgZqAlhi26.h8.aR3rfpl9XUDY.U.",
       "phone": "0725555093",
-      "profilePicture": "blob:http://localhost:3000/3b9d12c2-56cb-4289-a080-79c967616b12"
+      "profilePicture": "blob:http://localhost:3000/b8ad1c8c-a7da-483d-a6c8-3aac0c77cdaf"
     },
     {
       "id": "7363",
@@ -17,21 +18,51 @@
       "email": "reamakgabutla@gmail.com",
       "username": "rea4lyf",
       "password": "$2a$10$XR92v4WucNuGQrMQ8E/NoOisu1qwQedaBxLQpiAf3Q6MPnoGqRdCm",
-      "phone": "undefined",
-      "profilePicture": "blob:http://localhost:3000/86ae4a4f-b90c-4326-9417-c6f8c4515b1e"
+      "phone": "0605743217",
+      "profilePicture": "blob:http://localhost:3000/01853b20-b24d-4eb1-86c3-a19ef83a7fcf"
     }
   ],
   "recipes": [
     {
-      "id": "4c3d",
-      "name": "pap",
-      "ingredients": "water\nmaize meal\nsalt\n",
-      "instructions": "boil water then start cooking",
+      "id": "000f",
+      "name": "Pap",
+      "ingredients": [
+        "Water",
+        "Maize meal"
+      ],
+      "instructions": "pre-heat your stove and boil 1 litre of water inside pot.",
       "category": "Dinner",
       "prepTime": "2 mins",
-      "cookTime": "30 mins MAX",
+      "cookTime": "30 mins",
       "servings": "5",
       "userId": "2433"
+    },
+    {
+      "id": "2014",
+      "name": "Juice",
+      "ingredients": [
+        "water",
+        "ice"
+      ],
+      "instructions": "mix and put in fridge",
+      "category": "Breakfast",
+      "prepTime": "4",
+      "cookTime": "3",
+      "servings": "8",
+      "userId": "7363"
+    },
+    {
+      "id": "2e63",
+      "name": "pap",
+      "ingredients": [
+        "bbsjsbd"
+      ],
+      "instructions": "djfkjebbsfb fbfb ferhe",
+      "category": "Dinner",
+      "prepTime": "4",
+      "cookTime": "5",
+      "servings": "2",
+      "userId": "7363"
     }
   ]
 }

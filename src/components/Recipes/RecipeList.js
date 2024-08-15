@@ -1,9 +1,10 @@
+// src/components/Recipes/RecipeList.js
 import React from 'react';
 import RecipeCard from './RecipeCard';
 
 const RecipeList = ({ recipes, onEdit }) => {
   const user = JSON.parse(localStorage.getItem('user'));
-  const userRecipes = recipes.filter(recipe => recipe.userId === user.id);
+  const userRecipes = recipes.filter(recipe => recipe.userId === user?.id);
 
   return (
     <div className="recipe-list">
@@ -12,7 +13,7 @@ const RecipeList = ({ recipes, onEdit }) => {
           <RecipeCard
             key={recipe.id}
             recipe={recipe}
-            onEdit={() => onEdit(recipe)}
+            onEdit={onEdit}
           />
         ))
       ) : (

@@ -17,7 +17,9 @@ const HomePage = () => {
   ]);
   const [recipes, setRecipes] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [noResults, setNoResults] = useState(false);
 
+  // Fetch recipes on component mount
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -31,14 +33,20 @@ const HomePage = () => {
     fetchRecipes();
   }, []);
 
+  // Update filtered recipes whenever searchTerm, selectedCategory, or recipes change
   useEffect(() => {
     const updatedFilteredRecipes = recipes.filter(recipe => {
-      const matchesCategory = selectedCategory ? recipe.category === selectedCategory : true;
+      const matchesCategory = selectedCategory
+        ? recipe.category.toLowerCase() === selectedCategory.toLowerCase()
+        : true;
       const matchesName = recipe.name.toLowerCase().includes(searchTerm.toLowerCase());
+
       return matchesCategory && matchesName;
     });
+
     setFilteredRecipes(updatedFilteredRecipes);
-  }, [searchTerm, selectedCategory, recipes]); // Update filtered recipes when search term, category, or recipes change
+    setNoResults(updatedFilteredRecipes.length === 0);
+  }, [searchTerm, selectedCategory, recipes]);
 
   const handleAddNewRecipe = () => {
     setSelectedRecipe(null);
@@ -58,6 +66,9 @@ const HomePage = () => {
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
 
   return (
     <div className="page-container">
@@ -71,8 +82,15 @@ const HomePage = () => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <button className="add-recipe-btn" onClick={handleAddNewRecipe}>Add New Recipe</button>
+        <select className="category-select" onChange={handleCategoryChange} value={selectedCategory}>
+          <option value="">All Categories</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+        </select>
+        <button className="search-button">Search</button>
       </div>
+        <button className="add-recipe-btn" onClick={handleAddNewRecipe}>Add New Recipe</button>
 
       {!isFormVisible && (
         <>
@@ -97,13 +115,19 @@ const HomePage = () => {
           onSave={handleSaveRecipe}
         />
       ) : (
-        <RecipeList
-          recipes={filteredRecipes}
-          onEdit={(recipe) => {
-            setSelectedRecipe(recipe);
-            setFormVisible(true);
-          }}
-        />
+        <div>
+          {noResults ? (
+            <p>No items found</p>
+          ) : (
+            <RecipeList
+              recipes={filteredRecipes}
+              onEdit={(recipe) => {
+                setSelectedRecipe(recipe);
+                setFormVisible(true);
+              }}
+            />
+          )}
+        </div>
       )}
 
       <Footer />

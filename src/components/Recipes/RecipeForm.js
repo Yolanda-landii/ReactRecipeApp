@@ -23,7 +23,7 @@ const RecipeForm = ({ recipe, onSave }) => {
 
     const newRecipe = {
       name,
-      ingredients,
+      ingredients: ingredients.split('\n'), // Assuming ingredients are entered line by line
       instructions,
       category,
       prepTime,
@@ -48,7 +48,7 @@ const RecipeForm = ({ recipe, onSave }) => {
 
   return (
     <div className="recipe-form-container">
-      <h2>New Recipe</h2>
+      <h2>{recipe ? 'Edit Recipe' : 'New Recipe'}</h2>
       <form onSubmit={handleSave}>
         <input
           type="text"
@@ -58,7 +58,7 @@ const RecipeForm = ({ recipe, onSave }) => {
           required
         />
         <textarea
-          placeholder="Ingredients"
+          placeholder="Ingredients (one per line)"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
           required
