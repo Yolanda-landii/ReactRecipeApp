@@ -12,10 +12,7 @@ const LandingPage = () => {
         <h1 className="hero-title">Welcome to Recipe Finder</h1>
         <p className="hero-subtitle">Discover, share, and enjoy amazing recipes!</p>
         <div className="phone-mockup">
-          {/* <img src="/images/phone-mockup.png" alt="Phone Mockup" />
-          <div className="phone-content">
-            
-          </div> */}
+         
         </div>
       </div>
 

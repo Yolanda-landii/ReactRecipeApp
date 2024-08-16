@@ -1,7 +1,7 @@
-// src/components/Recipes/RecipeCard.js
+
 import React from 'react';
 import { api } from '../../services/api';
-import './RecipeForm.css'; // Updated the CSS filename to match
+import './RecipeForm.css'; 
 
 const RecipeCard = ({ recipe, onEdit }) => {
   const handleDelete = async () => {
