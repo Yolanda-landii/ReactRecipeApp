@@ -46,40 +46,46 @@
   }
   
  /* Profile.css */
-body {
-  background-color: #f7f9fc;
+ .profile-page {
+  display: flex;
+  height: 100vh;
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  background-color: #f8f9fa;
 }
 
-.profile-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.sidebar {
+  width: 250px;
+  background-color: #343a40;
+  color: #fff;
   padding: 20px;
-  color: #343a40;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.sidebar ul li:hover {
+  color: #007bff;
 }
 
 .main-content {
-  display: flex;
-  width: 80%;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+  flex: 1;
+  padding: 20px;
 }
 
 .header {
-  padding: 20px;
-  background-color: #343a40;
-  color: #fff;
-  text-align: left;
-  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
-.header .profile-actions {
+.profile-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,79 +96,73 @@ body {
 }
 
 .profile-pic {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  width: 200px;
-  height: 200px;
   object-fit: cover;
   margin-bottom: 10px;
-}
-
-.user-info span {
-  display: block;
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-input[type="file"] {
-  margin-top: 20px;
-  padding: 5px;
+  border: 2px solid #007bff;
 }
 
 .profile-main {
+  background-color: #fff;
   padding: 20px;
-  width: 70%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .profile-info h2 {
-  font-size: 24px;
   margin-bottom: 20px;
+  color: #343a40;
 }
 
 .profile-form {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.form-group {
-  flex: 1 1 calc(50% - 20px);
-  display: flex;
   flex-direction: column;
 }
 
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.form-group:last-child {
+  margin-right: 0;
+}
+
 .form-group label {
+  display: block;
   margin-bottom: 5px;
-  font-weight: bold;
+  color: #343a40;
 }
 
 .form-group input {
+  width: 100%;
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  border: 1px solid #ced4da;
   border-radius: 5px;
-  outline: none;
 }
 
 .save-button {
   padding: 10px 20px;
-  background-color: #e55c50;
-  color: white;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
   cursor: pointer;
-  align-self: flex-start;
+  margin-top: 20px;
 }
 
 .save-button:hover {
   background-color: #0056b3;
 }
 
-.error-message {
-  color: red;
-  margin-bottom: 15px;
-}
 
   
   .footer {
@@ -319,8 +319,6 @@ input[type="file"] {
   .category-card:hover {
     transform: scale(1.1);
   }
-  
-  /* src/pages/HomePage.css */
 
   .search-button, .add-recipe-btn {
     padding: 10px;
@@ -370,47 +368,73 @@ input[type="file"] {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  /* background: url('/images/istockphoto-1491752650-612x612.jpg') no-repeat center center fixed; */
+  background: url('../assets/Image/pexels-mali-106877.jpg');
   background-size: cover;
   min-height: 100vh;
-  box-sizing: border-box;
-  color: #fff; /* White text for better contrast */
+  color: #ffffff;
 }
 
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-link {
+  margin: 0 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-link.auth-link {
+  background-color: #0056b3;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
 
 .hero-section {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 50px;
 }
 
 .hero-title {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  color: #666;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
 }
 
-
-
-.auth-container {
-  margin-top: 2px;
+.cta-section {
+  margin-top: 30px;
 }
 
-.auth-button {
+.cta-button {
   display: inline-block;
   padding: 10px 20px;
-  font-size: 16px;
-  color: #161414;
-  
+  margin: 10px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  color: #0056b3;
+  border-radius: 25px;
   text-decoration: none;
-  margin: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.auth-button:hover {
+.cta-button:hover {
   background-color: #0056b3;
+  color: #ffffff;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchUsers, updateUser } from '../services/api'; 
-import './Profile.css'; 
+import defaultProfilePic from '../assets/Image/pp icon.jpg'; 
+import './Profile.css';
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
@@ -8,7 +9,7 @@ const ProfilePage = () => {
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(defaultProfilePic); 
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const ProfilePage = () => {
             setSurname(currentUser.surname);
             setEmail(currentUser.email);
             setPhone(currentUser.phone);
-            setProfilePicture(currentUser.profilePicture);
+            setProfilePicture(currentUser.profilePicture || defaultProfilePic);
           }
         }
       } catch (error) {
@@ -39,37 +40,38 @@ const ProfilePage = () => {
   const handleProfilePictureChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setProfilePicture(URL.createObjectURL(file));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setProfilePicture(reader.result); // Set Base64 string as profile picture
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  // Clean up the object URL to prevent memory leaks
-  useEffect(() => {
-    return () => {
-      if (profilePicture) {
-        URL.revokeObjectURL(profilePicture);
-      }
-    };
-  }, [profilePicture]);
-
   const handleSaveProfile = async (event) => {
     event.preventDefault();
+    if (!profile) {
+      setError('Profile not found.');
+      return;
+    }
+    
     try {
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('surname', surname);
-      formData.append('email', email);
-      formData.append('phone', phone);
-      if (profilePicture) {
-        formData.append('profilePicture', profilePicture);
-      }
+      const updatedProfile = {
+        name,
+        surname,
+        email,
+        phone,
+        profilePicture,
+      };
 
-      await updateUser(profile.id, formData);
+      console.log('Updating profile:', updatedProfile);
+
+      const response = await updateUser(profile.id, updatedProfile);
+
+      console.log('Update response:', response.data);
 
       // Optionally update localStorage
-      const updatedUser = { ...profile, name, surname, email, phone, profilePicture };
-      localStorage.setItem('user', JSON.stringify(updatedUser));
-
+      localStorage.setItem('user', JSON.stringify(updatedProfile));
       alert('Profile updated successfully!');
     } catch (error) {
       console.error('Error updating profile:', error.response ? error.response.data : error.message);
@@ -83,7 +85,7 @@ const ProfilePage = () => {
         <header className="header">
           <div className="profile-actions">
             <div className="user-info">
-              <img src={profilePicture || '/default-profile.png'} alt="User" className="profile-pic" />
+              <img src={profilePicture} alt="User" className="profile-pic" onError={(e) => e.target.src = defaultProfilePic} />
               <span>{profile?.name} {profile?.surname}</span>
             </div>
             <input type="file" onChange={handleProfilePictureChange} />
