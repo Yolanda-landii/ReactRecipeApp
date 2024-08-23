@@ -18,125 +18,143 @@ User Authentication
 
 - - - Hash the password.
 
-Create a user object with the hashed password and profile picture.
-Send the user object to the API.
-Show an alert indicating successful registration.
-If an error occurs, log the error and show an alert indicating failure.
-1.2 Login
+- - Create a user object with the hashed password and profile picture.
+- - - Send the user object to the API.
 
-UI Components:
+- - Show an alert indicating successful registration.
+- - - If an error occurs, log the error and show an alert indicating failure.
 
-Form with fields for email and password.
-Submit button.
-Link to registration page.
-Process:
+Login
 
-User enters email and password.
-When the user submits the form:
-HandleLogin:
-Prevent the default form submission.
-Fetch all users from the API.
-Find the user by email.
-If the user exists and the password matches:
-Save user details to localStorage.
-Navigate to the home page.
-If credentials are invalid, show an alert.
-If an error occurs, log the error and show an alert.
-1.3 Profile Management
+- UI Components:
 
-UI Components:
+- - Form with fields for email and password.
+- - Submit button.
+- - Link to registration page.
 
-Display user profile information and profile picture.
-Form to update profile information.
-Submit button.
-Process:
+- Process:
 
-User views their profile.
-User updates profile information:
-HandleProfilePictureChange:
-Set the profile picture to the selected file.
-HandleSaveProfile:
-Prevent the default form submission.
-Create a form data object with user details and profile picture.
-Update the user profile using the API.
-Show a success alert.
-If an error occurs, log the error and show an error alert.
-2. Recipe Management
-2.1 Create Recipe
+- - User enters email and password.
+- - When the user submits the form:
 
-UI Components:
+- - - HandleLogin:
+- - - - Prevent the default form submission.
+- - - - Fetch all users from the API.
+- - - - Find the user by email.
+- - - - If the user exists and the password matches:
+- - - - Save user details to localStorage.
+- - - - Navigate to the home page.
+- - - - If credentials are invalid, show an alert.
+- - - - If an error occurs, log the error and show an alert.
 
-Button to add a new recipe.
-RecipeForm component (visible when adding a recipe).
-Process:
+Profile Management
 
-User clicks the "Add New Recipe" button:
-HandleAddNewRecipe:
-Show the recipe form.
-User fills out the recipe form:
-HandleSave:
-Prevent the default form submission.
-Set a loading state.
-Create a new recipe object with form data.
-If editing an existing recipe, update the recipe by ID.
-Otherwise, add the new recipe.
-Call the onSave callback.
-Handle errors and reset the loading state.
-2.2 View Recipe
+- UI Components:
 
-UI Components:
+- - Display user profile information and profile picture.
+- - Form to update profile information.
+- - Submit button.
 
-Display recipe details (name, ingredients, instructions, etc.).
-Edit button.
-Delete button.
-Process:
+- Process:
 
-User views a recipe:
-RenderRecipeDetails:
-Display the recipe details.
-Provide buttons to edit or delete the recipe.
-HandleDelete:
-Delete the recipe by ID from the API.
-Reload the page or update the recipe list.
-2.3 Filter Recipes
+- - User views their profile.
+- - User updates profile information:
 
-UI Components:
+- - - HandleProfilePictureChange:
+- - - - Set the profile picture to the selected file.
 
-Buttons for recipe categories.
-RecipeList component.
-RecipeForm component (if form is visible).
-Process:
+- - - HandleSaveProfile:
+- - - - Prevent the default form submission.
+- - - - Create a form data object with user details and profile picture.
+- - - - Update the user profile using the API.
+- - - - Show a success alert.
+- - - - If an error occurs, log the error and show an error alert.
 
-User clicks a category button:
-HandleCategoryClick:
-Set the selected category.
-FilterRecipes:
-Filter recipes based on the selected category.
-Update the recipe list display.
-3. Data Management
-3.1 Local Storage
+Recipe Management
 
-Functions:
-StoreUserInLocalStorage:
-Save user details and authentication state in local storage.
-GetUserFromLocalStorage:
-Retrieve user details from local storage.
-SetAuthenticationState:
-Set the authentication state in local storage.
-3.2 Database (db.json)
+- Create Recipe
 
-Functions:
-SaveUserToDatabase:
-Append user data to db.json.
-FetchUsersFromDatabase:
-Retrieve all user data from db.json.
-SaveRecipeToDatabase:
-Append recipe data to db.json.
-FetchRecipeFromDatabaseById:
-Retrieve the specific recipe by ID from db.json.
-UpdateUserInDatabase:
-Modify the existing user data in db.json.
-UpdateRecipeInDatabase:
-Modify the existing recipe data in db.json.
-RemoveRecipeFromDatabase:
-Delete the recipe data from db.json by ID.
+- - UI Components:
+
+- - - Button to add a new recipe.
+- - - RecipeForm component (visible when adding a recipe).
+
+- - - Process:
+
+- - - - User clicks the "Add New Recipe" button:
+- - - - HandleAddNewRecipe:
+- - - - - Show the recipe form.
+- - - - - User fills out the recipe form:
+- - - - - - HandleSave:
+- - - - - - - Prevent the default form submission.
+- - - - - - - Set a loading state.
+- - - - - - - Create a new recipe object with form data.
+- - - - - - - If editing an existing recipe, update the recipe by ID.
+- - - - - - - Otherwise, add the new recipe.
+- - - - - - - Call the onSave callback.
+- - - - - - - Handle errors and reset the loading state.
+
+- View Recipe
+
+- - UI Components:
+
+- - - Display recipe details (name, ingredients, instructions, etc.).
+- - - Edit button.
+- - - Delete button.
+
+- - - Process:
+
+- - - - User views a recipe:
+- - - - - RenderRecipeDetails:
+- - - - - - Display the recipe details.
+- - - - - - Provide buttons to edit or delete the recipe.
+- - - - HandleDelete:
+- - - - - Delete the recipe by ID from the API.
+- - - - - Reload the page or update the recipe list.
+
+- Filter Recipes
+
+- - UI Components:
+
+- - - Buttons for recipe categories.
+- - - RecipeList component.
+- - - RecipeForm component (if form is visible).
+
+- - - Process:
+
+- - - - User clicks a category button:
+- - - - HandleCategoryClick:
+- - - - - Set the selected category.
+- - - - FilterRecipes:
+- - - - - Filter recipes based on the selected category.
+- - - - - Update the recipe list display.
+
+Data Management
+
+- Local Storage
+
+- - Functions:
+- - - StoreUserInLocalStorage:
+- - - Save user details and authentication state in local storage.
+- - - - GetUserFromLocalStorage:
+- - - - - Retrieve user details from local storage.
+- - - - - SetAuthenticationState:
+- - - - - - Set the authentication state in local storage.
+
+- Database (db.json)
+
+- - Functions:
+- - SaveUserToDatabase:
+- - - Append user data to db.json.
+- - - FetchUsersFromDatabase:
+- - - - Retrieve all user data from db.json.
+- - - SaveRecipeToDatabase:
+- - - - Append recipe data to db.json.
+- - - FetchRecipeFromDatabaseById:
+- - - - Retrieve the specific recipe by ID from db.json.
+- - - UpdateUserInDatabase:
+- - - - Modify the existing user data in db.json.
+- - - UpdateRecipeInDatabase:
+- - - - Modify the existing recipe data in db.json.
+- - - RemoveRecipeFromDatabase:
+- - - - Delete the recipe data from db.json by ID.
