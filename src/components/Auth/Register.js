@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 import './Auth.css';
 
 const Registration = () => {
@@ -12,33 +12,34 @@ const Registration = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
+  
     try {
       // Check if email already exists
-      const { data: users } = await axios.get('http://localhost:5000/users');
+      const { data: users } = await axios.get('http://localhost:3000/users');
       const existingUser = users.find(user => user.email === email);
-
+  
       if (existingUser) {
         alert('Email already in use');
         return;
       }
-
-      // Hash the password before storing
-      const hashedPassword = await bcrypt.hash(password, 10);
-
+  
       const user = {
         name,
         surname,
         email,
         username,
-        password: hashedPassword, // Store hashed password
+        password,
       };
-
-      await axios.post('http://localhost:5000/users', user);
+  
+      await axios.post('http://localhost:3000/users', user); // Updated URL
       alert('User registered successfully');
     } catch (error) {
       console.error('Registration error:', error);
-      alert('An error occurred during registration');
+      if (error.response) {
+        alert(error.response.data.message); // Display specific error message
+      } else {
+        alert('An error occurred during registration');
+      }
     }
   };
 
