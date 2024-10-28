@@ -4,7 +4,7 @@ import './RecipeForm.css';
 
 const RecipeForm = ({ recipe, onSave }) => {
   const [name, setName] = useState(recipe?.name || '');
-  const [ingredients, setIngredients] = useState(recipe?.ingredients || '');
+  const [ingredients, setIngredients] = useState(Array.isArray(recipe?.ingredients) ? recipe.ingredients.join('\n') : recipe?.ingredients || '');
   const [instructions, setInstructions] = useState(recipe?.instructions || '');
   const [category, setCategory] = useState(recipe?.category || '');
   const [prepTime, setPrepTime] = useState(recipe?.prepTime || '');
@@ -16,25 +16,60 @@ const RecipeForm = ({ recipe, onSave }) => {
   const categories = ['Breakfast', 'Lunch', 'Dinner'];
   const user = JSON.parse(localStorage.getItem('user'));
 
+  const validateInputs = () => {
+    if (name.length < 3) {
+      setError("Recipe name must be at least 3 characters.");
+      return false;
+    }
+    if (!ingredients.trim()) {
+      setError("Please enter at least one ingredient.");
+      return false;
+    }
+    if (instructions.length < 10) {
+      setError("Instructions must be at least 10 characters.");
+      return false;
+    }
+    if (!category) {
+      setError("Please select a category.");
+      return false;
+    }
+    if (isNaN(prepTime) || prepTime <= 0) {
+      setError("Preparation time must be a positive number.");
+      return false;
+    }
+    if (isNaN(cookTime) || cookTime <= 0) {
+      setError("Cooking time must be a positive number.");
+      return false;
+    }
+    if (isNaN(servings) || servings <= 0) {
+      setError("Servings must be a positive number.");
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
+    if (!validateInputs()) return;
+
     setLoading(true);
     setError('');
 
     const newRecipe = {
       name,
-      ingredients: ingredients.split('\n'), // Assuming ingredients are entered line by line
+      ingredients: ingredients.split('\n'),
       instructions,
       category,
       prepTime,
       cookTime,
       servings,
-      userId: user.id // Associate the recipe with the logged-in user
+      userId: user.id
     };
 
     try {
       if (recipe) {
-        await api.patch(`/recipes/${recipe.id}`, newRecipe);
+        await api.put(`/recipes/${recipe._id}`, newRecipe);
       } else {
         await api.post('/recipes', newRecipe);
       }
@@ -80,15 +115,15 @@ const RecipeForm = ({ recipe, onSave }) => {
           ))}
         </select>
         <input
-          type="text"
-          placeholder="Preparation Time"
+          type="number"
+          placeholder="Preparation Time (minutes)"
           value={prepTime}
           onChange={(e) => setPrepTime(e.target.value)}
           required
         />
         <input
-          type="text"
-          placeholder="Cooking Time"
+          type="number"
+          placeholder="Cooking Time (minutes)"
           value={cookTime}
           onChange={(e) => setCookTime(e.target.value)}
           required

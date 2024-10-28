@@ -1,4 +1,3 @@
-// src/pages/RecipeDetail.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { api } from '../services/api';
@@ -9,8 +8,12 @@ const RecipeDetail = () => {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const result = await api.get(`/recipes/${id}`);
-      setRecipe(result.data);
+      try {
+        const result = await api.get(`/recipes/${id}`);
+        setRecipe(result.data);
+      } catch (error) {
+        console.error('Error fetching recipe:', error);
+      }
     };
     fetchRecipe();
   }, [id]);
@@ -19,15 +22,19 @@ const RecipeDetail = () => {
 
   return (
     <div className="recipe-detail-container">
-      <img src={recipe.image} alt={recipe.name} className="recipe-detail-image" />
+      {recipe.image && <img src={recipe.image} alt={recipe.title} className="recipe-detail-image" />}
       <div className="recipe-detail-info">
-        <h2>{recipe.name}</h2>
+        <h2>{recipe.title}</h2>
         <h4>Category: {recipe.category}</h4>
-        <p>Prep Time: {recipe.prepTime}</p>
-        <p>Cook Time: {recipe.cookTime}</p>
+        <p>Prep Time: {recipe.prepTime} mins</p>
+        <p>Cook Time: {recipe.cookTime} mins</p>
         <p>Servings: {recipe.servings}</p>
         <h4>Ingredients:</h4>
-        <p>{recipe.ingredients}</p>
+        <ul>
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
         <h4>Instructions:</h4>
         <p>{recipe.instructions}</p>
       </div>

@@ -15,7 +15,7 @@ const LandingPage = () => {
         </nav>
       </header>
       <div className="cta-section">
-        <Link to="/register" className="cta-button">Get Started</Link>
+        <Link to="/home" className="cta-button">Get Started</Link>
       </div>
       <Footer />
     </div>
