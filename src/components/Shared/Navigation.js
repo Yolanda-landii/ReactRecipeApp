@@ -1,7 +1,7 @@
 // src/components/Shared/Navbar.js
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './Shared.css'; // Import the CSS file for styling
+import './Shared.css'; 
 
 const Navbar = () => {
   const navigate = useNavigate();

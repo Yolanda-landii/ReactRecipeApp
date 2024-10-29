@@ -8,12 +8,7 @@ import Login from './components/Auth/Login';
 import Registration from './components/Auth/Register';
 import ProtectedRoute from './components/Shared/ProtectedRouter';
 import RecipeDetail from './pages/RecipeDetails';
-
-// A simple utility to check if user is authenticated
-const useAuth = () => {
-  // Replace with your authentication logic
-  return !!localStorage.getItem('authToken');
-};
+import { useAuth } from './utils/auth';
 
 const App = () => {
   const isAuthenticated = useAuth();
