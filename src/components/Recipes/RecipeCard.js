@@ -5,8 +5,15 @@ import './RecipeForm.css';
 
 const RecipeCard = ({ recipe, onEdit }) => {
   const handleDelete = async () => {
-    await api.delete(`/recipes/${recipe.id}`);
-    window.location.reload();
+    try {
+      const token = localStorage.getItem('token'); 
+      await api.delete(`/recipes/${recipe._id}`, {
+        headers: { Authorization: `Bearer ${token}` } 
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error('Error deleting recipe:', error);
+    }
   };
 
   const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [recipe.ingredients];

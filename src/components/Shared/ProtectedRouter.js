@@ -5,8 +5,14 @@ import Footer from './Footer';
 
 const ProtectedRoute = ({ element }) => {
   const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user.role);
+  const token = localStorage.getItem('token');
+  console.log('JWT Token:', token); 
+  if (!user || !token) {
+    return <Navigate to="/login" />;
+  }
 
-  return user ? (
+  return (
     <div className="protected-route-container">
       <Navbar />
       <div className="protected-route-content">
@@ -14,8 +20,6 @@ const ProtectedRoute = ({ element }) => {
       </div>
       <Footer />
     </div>
-  ) : (
-    <Navigate to="/login" />
   );
 };
 

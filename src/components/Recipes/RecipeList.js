@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import RecipeCard from './RecipeCard';
 
 const RecipeList = ({ recipes, onEdit }) => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const userRecipes = recipes.filter(recipe => recipe.userId === user?.id);
+  useEffect(() => {
+    console.log({ recipes });
+    recipes.forEach(item => {
+      console.log({ item });
+    });
+  }, [recipes]);
+
+  if (recipes.length === 0) {
+    return <p>No recipes available in this category.</p>;
+  }
 
   return (
-    <div className="recipe-list">
-      {userRecipes.length > 0 ? (
-        userRecipes.map(recipe => (
-          <RecipeCard
-            key={recipe.id}
-            recipe={recipe}
-            onEdit={onEdit}
-          />
-        ))
-      ) : (
-        <p>No recipes available in this category.</p>
-      )}
-    </div>
+    <>
+      {recipes.map(recipe => (
+        <RecipeCard
+          key={recipe._id} 
+          recipe={recipe}
+          onEdit={onEdit}
+        />
+      ))}
+    </>
   );
 };
 
