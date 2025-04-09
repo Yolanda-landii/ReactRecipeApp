@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RecipeList from '../components/Recipes/RecipeList';
-import RecipeForm from '../components/Recipes/RecipeForm'; // Keep this if you plan to use RecipeForm
+import RecipeForm from '../components/Recipes/RecipeForm';
 import Footer from '../components/Shared/Footer';
 import { api } from '../services/api';
 import './Profile.css';
@@ -35,8 +35,8 @@ const HomePage = () => {
   
   useEffect(() => {
     const updatedFilteredRecipes = recipes.filter(recipe => {
-      const recipeName = recipe.name ? recipe.name.toLowerCase() : ''; // Ensure recipe.name is defined
-      const recipeCategory = recipe.category ? recipe.category.toLowerCase() : ''; // Ensure recipe.category is defined
+      const recipeName = recipe.name ? recipe.name.toLowerCase() : '';
+      const recipeCategory = recipe.category ? recipe.category.toLowerCase() : '';
   
       const matchesCategory = selectedCategory
         ? recipeCategory === selectedCategory.toLowerCase()

@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
-// import Login from './components/Auth/Login';
-// import Registration from './components/Auth/Register';
-// import ProtectedRoute from './components/Shared/ProtectedRouter';
+import Login from './components/Auth/Login';
+import Registration from './components/Auth/Register';
+import Navigation from './components/Shared/Navigation';
 import RecipeDetail from './pages/RecipeDetails';
 
 // A simple utility to check if user is authenticated
@@ -20,14 +20,19 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <LandingPage />} />
-        {/* <Route path="/login" element={isAuthenticated ? <Navigate to="/home" /> : <Login />} />
-        <Route path="/register" element={isAuthenticated ? <Navigate to="/home" /> : <Registration />} /> */}
-        <Route path="/home" element={<HomePage />}  />
-        <Route path="/profile" element={<ProfilePage />}  />
-        <Route path="/recipe/:id" element={<RecipeDetail />}  />
-      </Routes>
+      <div className="app-container">
+        <Navigation />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/home" />} />
+            <Route path="/register" element={!isAuthenticated ? <Registration /> : <Navigate to="/home" />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/profile" element={isAuthenticated ? <ProfilePage /> : <Navigate to="/login" />} />
+            <Route path="/recipe/:id" element={isAuthenticated ? <RecipeDetail /> : <Navigate to="/login" />} />
+          </Routes>
+        </main>
+      </div>
     </Router>
   );
 };

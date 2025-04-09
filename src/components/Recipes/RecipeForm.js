@@ -7,8 +7,8 @@ const RecipeForm = ({ recipe, onSave }) => {
   const [ingredients, setIngredients] = useState(Array.isArray(recipe?.ingredients) ? recipe.ingredients.join('\n') : recipe?.ingredients || '');
   const [instructions, setInstructions] = useState(recipe?.instructions || '');
   const [category, setCategory] = useState(recipe?.category || '');
-  const [prepTime, setPrepTime] = useState(recipe?.prepTime || '');
-  const [cookTime, setCookTime] = useState(recipe?.cookTime || '');
+  const [preparationTime, setPreparationTime] = useState(recipe?.preparationTime || '');
+  const [cookingTime, setCookingTime] = useState(recipe?.cookingTime || '');
   const [servings, setServings] = useState(recipe?.servings || '');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -33,11 +33,11 @@ const RecipeForm = ({ recipe, onSave }) => {
       setError("Please select a category.");
       return false;
     }
-    if (isNaN(prepTime) || prepTime <= 0) {
+    if (isNaN(preparationTime) || preparationTime <= 0) {
       setError("Preparation time must be a positive number.");
       return false;
     }
-    if (isNaN(cookTime) || cookTime <= 0) {
+    if (isNaN(cookingTime) || cookingTime <= 0) {
       setError("Cooking time must be a positive number.");
       return false;
     }
@@ -58,23 +58,24 @@ const RecipeForm = ({ recipe, onSave }) => {
 
     const newRecipe = {
       name,
-      ingredients: ingredients.split('\n'),
+      ingredients: ingredients.split('\n').filter(ingredient => ingredient.trim()),
       instructions,
       category,
-      prepTime,
-      cookTime,
-      servings,
+      preparationTime: parseInt(preparationTime, 10),
+      cookingTime: parseInt(cookingTime, 10),
+      servings: parseInt(servings, 10),
       userId: user.id
     };
 
     try {
       if (recipe) {
-        await api.put(`/recipes/${recipe._id}`, newRecipe);
+        await api.patch(`/recipes/${recipe._id}`, newRecipe);
       } else {
         await api.post('/recipes', newRecipe);
       }
       onSave();
     } catch (err) {
+      console.error('Error saving recipe:', err);
       setError('An error occurred while saving the recipe. Please try again.');
     } finally {
       setLoading(false);
@@ -117,15 +118,15 @@ const RecipeForm = ({ recipe, onSave }) => {
         <input
           type="number"
           placeholder="Preparation Time (minutes)"
-          value={prepTime}
-          onChange={(e) => setPrepTime(e.target.value)}
+          value={preparationTime}
+          onChange={(e) => setPreparationTime(e.target.value)}
           required
         />
         <input
           type="number"
           placeholder="Cooking Time (minutes)"
-          value={cookTime}
-          onChange={(e) => setCookTime(e.target.value)}
+          value={cookingTime}
+          onChange={(e) => setCookingTime(e.target.value)}
           required
         />
         <input
@@ -144,4 +145,4 @@ const RecipeForm = ({ recipe, onSave }) => {
   );
 };
 
-export default RecipeForm;
+export default RecipeForm; 

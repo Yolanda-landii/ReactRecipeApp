@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# Recipe Hub - Recipe Management Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack recipe management application built with React and Node.js that allows users to create, manage, and share their favorite recipes.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- 👤 User authentication (Register/Login)
+- 📝 Create, edit, and delete recipes
+- 🔍 Search recipes by name
+- 🏷️ Filter recipes by category
+- ⏱️ Track preparation and cooking times
+- 👥 Manage servings information
+- 📱 Responsive design for all devices
 
-### `npm start`
+## Frontend Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone this repository:
+```bash
+git clone <your-frontend-repo-url>
+cd recipe-hub-frontend
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Install dependencies:
+```bash
+npm install
+```
 
-### `npm test`
+3. Create a `.env` file in the root directory and add:
+```
+REACT_APP_API_URL=http://localhost:3000
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. Start the development server:
+```bash
+npm start
+```
 
-### `npm run build`
+The application will open in your default browser at `http://localhost:3001`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Backend Repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The backend code is available at: [Recipe Hub Backend](https://github.com/yourusername/recipe-hub-backend)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend Setup
 
-### `npm run eject`
+1. Clone the backend repository:
+```bash
+git clone https://github.com/Yolanda-landii/Mongo_NodeRecipeApp/tree/mongoRecipeApp
+cd recipe-hub-backend
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Install dependencies:
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Create a `.env` file in the backend root directory with:
+```
+PORT=3000
+MONGODB_URI=your_mongodb_connection_string
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. Start the backend server:
+```bash
+node App.js
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Technologies Used
 
-## Learn More
+### Frontend
+- React
+- React Router DOM
+- Axios
+- CSS3 with modern features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Backend
+- Node.js
+- Express.js
+- MongoDB
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Authentication
+- POST `/auth/register` - Register a new user
+- POST `/auth/login` - Login user
 
-### Analyzing the Bundle Size
+### Recipes
+- GET `/recipes` - Get all recipes
+- GET `/recipes/:id` - Get a specific recipe
+- POST `/recipes` - Create a new recipe
+- PATCH `/recipes/:id` - Update a recipe
+- DELETE `/recipes/:id` - Delete a recipe
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contributing
 
-### Making a Progressive Web App
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Contact
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Your Name - [@yourtwitter](https://twitter.com/yourtwitter)
+Project Link: [https://github.com/yourusername/recipe-hub-frontend](https://github.com/yourusername/recipe-hub-frontend)
