@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { auth } from '../../services/api';
 import './Auth.css';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -22,12 +25,25 @@ const Login = () => {
     setError('');
 
     try {
-      // Add your login logic here
-      // For now, just store a dummy token
-      localStorage.setItem('authToken', 'dummy-token');
-      navigate('/home');
+      console.log('Attempting login with:', formData);
+      const response = await auth.login(formData);
+      console.log('Login response:', response);
+      
+      // Adjust this based on your backend response structure
+      if (response && response.token) {
+        login(response.user || { email: formData.email }, response.token);
+        navigate('/home');
+      } else {
+        setError('Invalid response from server. Please try again.');
+      }
     } catch (err) {
-      setError(err.message || 'Login failed');
+      console.error('Login error:', err);
+      if (err.response) {
+        console.error('Error response:', err.response.data);
+        setError(err.response.data.message || 'Invalid email or password');
+      } else {
+        setError('Network error. Please check your connection.');
+      }
     }
   };
 

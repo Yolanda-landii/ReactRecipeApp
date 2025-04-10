@@ -1,14 +1,15 @@
 // src/components/Shared/Navbar.js
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './Shared.css'; // Import the CSS file for styling
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const isAuthenticated = !!localStorage.getItem('authToken');
+  const { token, logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    logout();
     navigate('/login');
   };
 
@@ -19,7 +20,7 @@ const Navigation = () => {
           <Link to="/" className="navbar-link">Recipe Hub</Link>
         </div>
         <div className="navbar-links">
-          {isAuthenticated ? (
+          {token ? (
             <>
               <Link className="navbar-link" to="/home">Home</Link>
               <Link className="navbar-link" to="/profile">Profile</Link>

@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { auth } from '../../services/api';
 import './Auth.css';
 
 const Register = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -29,12 +32,14 @@ const Register = () => {
     }
 
     try {
-      // Add your registration logic here
-      // For now, just store a dummy token
-      localStorage.setItem('authToken', 'dummy-token');
+      // Remove confirmPassword before sending to API
+      const { confirmPassword, ...userData } = formData;
+      const response = await auth.register(userData);
+      // Adjust this based on your backend response structure
+      login(response.user, response.token);
       navigate('/home');
     } catch (err) {
-      setError(err.message || 'Registration failed');
+      setError(err.response?.data?.message || 'Registration failed');
     }
   };
 
